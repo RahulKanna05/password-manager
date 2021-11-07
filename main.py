@@ -25,7 +25,7 @@ class mydatabase:
 
         self.mycursor.execute("select user_id from mastertable")
         result = self.mycursor.fetchall()
-            
+        
         while(True):                # finding whether given username already exists or not
             self.username = input('Enter a unique user_id:  ')
             self.password = input('Enter a password:  ')      
@@ -42,6 +42,10 @@ class mydatabase:
             except:
                 print("username already exists")
 
+        file = open('credentials.txt','w')
+        file.write('Your credentials for logging into password manager')
+        file.write('\n\nusername:  {}'.format(self.username))
+        file.write('\npassword:  {}'.format(self.password))
             
         self.Tables[self.username] = (          # creating a new table for a new user
          '''CREATE TABLE `{}` (
